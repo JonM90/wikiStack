@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res) {
-  res.send('WIKISTACK HOME');
+  res.render('index');
 });
 router.get('/jonathan', function(req, res) {
   res.send('Jonathan: co founder of wikistack');
