@@ -2,7 +2,7 @@ const express = require('express');
 const wikiRouter = express.Router();
 
 wikiRouter.get('/', function(req, res) {
-  res.render('index');
+  res.send('got to GET /wiki/');
 });
 
 wikiRouter.post('/', function(req, res, next) {
