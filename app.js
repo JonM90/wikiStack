@@ -16,13 +16,16 @@ var env = nunjucks.configure('views', {noCache: true});
 app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render);// when res.render works with html files, have it use nunjucks to do so
 
-app.use('/', routes);
 
 models.User.sync({})
 .then(function () {
   return models.Page.sync({});
 })
 .then(function () {
+  return models.db.sync({force: true});
+})
+.then(function () {
+  app.use('/', routes);
   app.listen(3000, function() {
     console.log('Listening on port 3000');
   });
