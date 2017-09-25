@@ -21,9 +21,9 @@ models.User.sync({})
 .then(function () {
   return models.Page.sync({});
 })
-// .then(function () {
-//   return models.db.sync({force: true});
-// })
+.then(function () {
+  return models.db.sync({force: true});
+})
 .then(function () {
   app.use('/', routes);
   app.listen(3000, function() {
