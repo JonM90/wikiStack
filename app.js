@@ -4,6 +4,7 @@ const app = express();
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
+const models = require('./models');
 
 app.use(express.static('public'));
 
@@ -17,7 +18,14 @@ app.engine('html', nunjucks.render);// when res.render works with html files, ha
 
 app.use('/', routes);
 
-app.listen(3000, function() {
-  console.log('Listening on port 3000');
-});
+models.User.sync({})
+.then(function () {
+  return models.Page.sync({});
+})
+.then(function () {
+  app.listen(3000, function() {
+    console.log('Listening on port 3000');
+  });
+})
+.catch(console.error);
 
