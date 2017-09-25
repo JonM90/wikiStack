@@ -10,7 +10,7 @@ wikiRouter.post('/', function(req, res, next) {
 });
 
 wikiRouter.get('/add', function(req, res, next) {
-  res.send('got to GET /wiki/add');
+  res.render('addpage');
 });
 
 module.exports = wikiRouter;
