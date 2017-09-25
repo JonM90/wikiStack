@@ -1,14 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const wikiRouter = require('./wiki');
+const userRouter = require('./user');
 
-router.get('/', function(req, res) {
-  res.render('index');
-});
-router.get('/jonathan', function(req, res) {
-  res.send('Jonathan: co founder of wikistack');
-});
-router.get('/devon', function(req, res) {
-  res.send('Devon: also co founder of wikistack');
-});
+router.use('/wiki', wikiRouter);
+
 
 module.exports = router;
