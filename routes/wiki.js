@@ -64,21 +64,30 @@ wikiRouter.route('/:createdPage')
     Page.findOne({where: {
         urlTitle: req.params.createdPage
       }
-    }, { include: [{
-      model: User, where: {id: Page.authorId}
-    }]
-    })
-    .then(function (post) {
-      res.render('wikipage', {
-        'title': post.title,
-        'title-url': post.urlTitle,
-        content: post.content,
-        'author-name': req.body.name,
-        'author-url': 3
-
-      });
+    }
+    // , { include: [{
+    //   model: User
+    //   // , where: {id: this.authorId}
+    // }]
+    // }
+    )
+    .then(function(post) {
+      User.findOne({where:  { id: post.authorId }
+      }).then(function(pUse) {
+        return pUse
+      }).then(function(use) {
+        console.log(post.urlTitle)
+        res.render('wikipage', {
+          title: post.title,
+          title_url: post.urlTitle,
+          content: post.content,
+          author_name: use.dataValues.name,
+          author_url: /users/ + use.dataValues.id
+        });
+      })
     })
     .catch(next);
+
   });
 
 
