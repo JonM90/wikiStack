@@ -33,7 +33,7 @@ const Page = db.define('page', {
   },
   getterMethods: {
     route: function () {
-      return this.getDataValue('urlTitle');
+      return this.getDataValue('title');
     }
   }
 });
