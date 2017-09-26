@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <h3>{{ title }} <small> <a href="{{ title_url }}/similar">Similar</a>
+  <h3>{{ page.title }} <small> <a href="{{ page.route }}/similar">Similar</a>
   </small></h3>
-  <h4>by <a href="{{ author_url }}"> {{ author_name }}</a></h4>
+  <h4>by <a href="/users/{{author.id}}"> {{ author.name }}</a></h4>
   <div>PLACEHOLDER TAG LIST</div>
   <hr/>
-  <div>{{ author_name }} @ <a href="{{ author_url }}">{{ author_url }}</a>
+  <div>{{ author.name }} @ <a href="/users/{{author.id}}">"/users/{{author.id}}"</a>
   </div>
-  <div class="page-body">{{ content }}</div>
+  <div class="page-body">{{ page.content }}</div>
   <hr/>
-  <a href="{{ title_url }}/edit" class="btn btn-primary">edit this page</a>
-  <a href="{{ title_url }}/delete" class="btn btn-danger">delete this page</a>
+  <a href="{{ page.route }}/edit" class="btn btn-primary">edit this page</a>
+  <a href="{{ page.route }}/delete" class="btn btn-danger">delete this page</a>
 {% endblock %}

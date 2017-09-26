@@ -27,8 +27,7 @@ userRouter.route('/:id')
     var user = vals[0];
     var pages = vals[1];
       res.render('users', {
-        userName: user.name,
-        userEmail: user.email,
+        user: user,
         pages: pages
       });
   })

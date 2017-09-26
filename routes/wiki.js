@@ -33,7 +33,6 @@ wikiRouter.route('/')
 
     })
     .then(function (page) {
-      console.log('P/page.route:', Page.route, page.route)
       res.redirect(page.route);
       //('/wiki/' + page.urlTitle);
     })
@@ -82,11 +81,8 @@ wikiRouter.route('/:createdPage')
       }).then(function(use) {
         console.log(post.urlTitle)
         res.render('wikipage', {
-          title: post.title,
-          title_url: post.urlTitle,
-          content: post.content,
-          author_name: use.dataValues.name,
-          author_url: /users/ + use.dataValues.id
+          page: post,
+          author: use
         });
       })
     })
