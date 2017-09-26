@@ -5,6 +5,7 @@ const Page = models.Page;
 const User = models.User;
 
 wikiRouter.route('/')
+  //index tab url is /wiki
   .get(function(req, res, next) {
     res.redirect('/');
   })
@@ -19,11 +20,12 @@ wikiRouter.route('/')
 
       var user = values[0];
 
-      var page = Page.build({
-        title: req.body.title,
-        content: req.body.content,
-        status: req.body.status
-      });
+      var page = Page.build(req.body);
+      //   {
+      //   title: req.body.title,
+      //   content: req.body.content,
+      //   status: req.body.status
+      // }
 
       return page.save().then(function (page) {
         return page.setAuthor(user);
@@ -31,7 +33,9 @@ wikiRouter.route('/')
 
     })
     .then(function (page) {
-      res.redirect('/wiki/' + req.body.title);
+      console.log('P/page.route:', Page.route, page.route)
+      res.redirect(page.route);
+      //('/wiki/' + page.urlTitle);
     })
     .catch(next);
 
@@ -67,7 +71,7 @@ wikiRouter.route('/:createdPage')
     }
     // , { include: [{
     //   model: User
-    //   // , where: {id: this.authorId}
+    //   // as: 'author' , where: {id: this.authorId}
     // }]
     // }
     )

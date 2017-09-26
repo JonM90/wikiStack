@@ -17,7 +17,7 @@ const Page = db.define('page', {
     allowNull: false,
   },
   status: {
-    type: Sequelize.ENUM('open', 'closed')
+    type: Sequelize.ENUM('Open', 'Closed')
   },
   date: {
     type: Sequelize.DATE,
@@ -30,8 +30,7 @@ const Page = db.define('page', {
         .replace(/[^\w]/g, '') :
         Math.random().toString(36).slice(2, 7);
     }
-  }
-}, {
+  },
   getterMethods: {
     route: function () {
       return this.getDataValue('urlTitle');

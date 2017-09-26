@@ -9,12 +9,12 @@ router.use('/wiki', wikiRouter);
 router.use('/users', userRouter);
 
 router.get('/', function(req, res, next) {
-  const pages = Page.findAll()
+  Page.findAll()
     .then(function (vals) {
       res.render('index', {
         pages: vals,
       });
-    });
+    }).catch(next);
 });
 
 module.exports = router;
